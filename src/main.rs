@@ -18,7 +18,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             let (output, input) = (File::create(output).unwrap(), open(input).unwrap());
             let rows = input.pixels().chunks(VIDEO_WIDTH);
             let mut buf = BufWriter::new(output);
-            for (i, row) in &rows {
+            for row in &rows {
                 for color in row.map(|pixel| pixel.2) {
                     if color[0] <= 10 {
                         write!(buf, r#"🌚"#).unwrap();
